@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>12_指令_自定义指令</title>
+    <meta charset="UTF-8">
+    <title>12_指令_自定义指令</title>
 </head>
 <body>
 
@@ -24,50 +24,51 @@
 -->
 <!--
 需求: 自定义2个指令
-  1. 功能类型于v-text, 但转换为全大写
-  2. 功能类型于v-text, 但转换为全小写
+  1. 功能类型于v-text, 但转换为全大写 v-upper-text
+  2. 功能类型于v-text, 但转换为全小写 v-lower-text
 -->
 
-<div id="test">
-  <p v-upper-text="msg"></p>
-  <p v-lower-text="msg"></p>
+<div id="test1">
+    <p v-upper-text="msg1"></p>
+    <p v-lower-text="msg1"></p>
 </div>
 
 <div id="test2">
-  <p v-upper-text="msg"></p>
-  <p v-lower-text="msg"></p>
+    <p v-upper-text="msg1"></p>
+    <p v-lower-text="msg1"></p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  // 注册一个全局指令
-  // el: 指令所在的标签对象
-  // binding: 包含指令相关数据的容器对象
-  Vue.directive('upper-text', function (el, binding) {
-    console.log(el, binding)
-    el.textContent = binding.value.toUpperCase()
-  })
-  new Vue({
-    el: '#test',
-    data: {
-      msg: "I Like You"
-    },
-    // 注册局部指令
-    directives: {
-      'lower-text'(el, binding) {
-        console.log(el, binding)
-        el.textContent = binding.value.toLowerCase()
-      }
-    }
+    //注册一个全局指令
+    //el: 指令属性所在的标签对象
+    //binding: 包含指令相关数据的容器对象
+    Vue.directive('upper-text', function (el, binding) {
+        console.log(el, binding);
+        //binding.value是要绑定的数据，对这个数据进行处理，再进入设置到textContent即可
+        el.textContent = binding.value.toUpperCase()
+    });
 
-  })
+    new Vue({
+        el: '#test1',
+        data: {
+            msg1: "NBA I Like This Game！"
+        },
+        //注册局部指令，只在当前的Vue实例的管理范围内有效
+        directives: {
+            'lower-text': function (el, binding) {
+                console.log(el, binding);
+                el.textContent = binding.value.toLowerCase();
+            }
+        }
+    });
 
-  new Vue({
-    el: '#test2',
-    data: {
-      msg: "I Like You Too"
-    }
-  })
+    new Vue({
+        el: '#test2',
+        data: {
+            msg2: "Just Do It！"
+        }
+    });
 </script>
 </body>
 </html>

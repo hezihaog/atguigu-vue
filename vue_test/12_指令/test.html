@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>12_指令_内置指令</title>
-  <style>
-    [v-cloak] { display: none }
-  </style>
+    <meta charset="UTF-8">
+    <title>12_指令_内置指令</title>
+    <style>
+        /* 属性选择器，找有v-cloak属性的元素，设置它的样式如下 */
+        /* 目的是防闪现，在Vue解析模板时，用这个选择器将这个元素隐藏，解析完毕后，将这个属性去掉，元素自然就显示出来了 */
+        [v-cloak] {
+            display: none
+        }
+    </style>
 </head>
 <body>
 <!--
@@ -23,26 +27,27 @@
   v-cloak : 使用它防止闪现表达式, 与css配合: [v-cloak] { display: none }
 -->
 <div id="example">
-  <p v-cloak>{{content}}</p>
-  <p v-text="content"></p>   <!--p.textContent = content-->
-  <p v-html="content"></p>  <!--p.innerHTML = content-->
-  <p ref="msg">abcd</p>
-  <button @click="hint">提示</button>
+    <p v-cloak>{{content}}</p>
+    <p ref="content">atguigu.com</p>
+    <button @click="hint">提示</button>
+    <!-- 防闪现 -->
+    <p v-cloak>{{ msg }}</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
-    el: '#example',
-    data: {
-      content: '<a href="http://www.baidu.com">百度一下</a>'
-    },
-    methods: {
-      hint () {
-        alert(this.$refs.msg.innerHTML)
-      }
-    }
-  })
+    new Vue({
+        el: '#example',
+        data: {
+            content: '<a href="http://www.baidu.com">百度一下</a>'
+        },
+        methods: {
+            hint() {
+                //获取ref属性值为content的元素的innerHTML
+                alert(this.$refs.content.innerHTML);
+            }
+        }
+    })
 </script>
 </body>
 </html>
