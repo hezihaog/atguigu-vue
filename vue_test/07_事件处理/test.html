@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>07_事件处理</title>
+    <meta charset="UTF-8">
+    <title>07_事件处理</title>
 </head>
 <body>
 <!--
@@ -21,59 +21,76 @@
 -->
 
 <div id="example">
+    <h2>1. 绑定监听</h2>
+    <button @click="test1">test1</button>
+    <!-- 点击时，传递数据 -->
+    <button @click="test2('atguigu')">test2</button>
+    <!-- $event，代表事件对象，当只需要一个事件对象时，不需要调用时传，在方法声明形参时加上即可 -->
+    <button @click="test3">test3</button>
+    <!-- 传递event事件同时传递数据，这时就需要调用时使用$event传入 -->
+    <button @click="test4(123, $event)">test4</button>
 
-  <h2>1. 绑定监听</h2>
-  <button @click="test1">test1</button>
-  <button @click="test2('abc')">test2</button>
-  <button @click="test3('abcd', $event)">test3</button>
+    <h2>2. 事件修饰符</h2>
+    <div style="width: 200px; height: 200px; background-color: red" @click="test5">
+        <div style="width: 100px; height: 100px; background-color: blue" @click.stop="test6"></div>
+    </div>
 
-  <h2>2. 事件修饰符</h2>
-  <a href="http://www.baidu.com" @click.prevent="test4">百度一下</a>
-  <div style="width: 200px;height: 200px;background: red" @click="test5">
-    <div style="width: 100px;height: 100px;background: blue" @click.stop="test6"></div>
-  </div>
+    <!-- 阻止事件的默认行为 -->
+    <a href="http://www.baidu.com" @click.prevent="test7">去百度</a>
 
-  <h2>3. 按键修饰符</h2>
-  <input type="text" @keyup.13="test7">
-  <input type="text" @keyup.enter="test7">
-
+    <h2>3. 按键修饰符</h2>
+    <!-- 在输入框中，监听按下回车键（Enter键） -->
+    <input type="text" @keyup.13="test8">
+    <!-- 记不住13，使用enter也可以 -->
+    <input type="text" @keyup.enter="test8">
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
-    el: '#example',
-    data: {
-
-    },
-    methods: {
-      test1(event) {
-        alert(event.target.innerHTML)
-      },
-      test2 (msg) {
-        alert(msg)
-      },
-      test3 (msg, event) {
-        alert(msg+'---'+event.target.textContent)
-      },
-
-      test4 () {
-        alert('点击了链接')
-      },
-
-      test5 () {
-        alert('out')
-      },
-      test6 () {
-        alert('inner')
-      },
-
-      test7 (event) {
-        console.log(event.keyCode)
-        alert(event.target.value)
-      }
-    }
-  })
+    new Vue({
+        el: '#example',
+        data: {},
+        methods: {
+            test1() {
+                alert('test1');
+            },
+            test2(msg) {
+                alert(msg);
+            },
+            test3(event) {
+                alert(event.target.innerHTML);
+            },
+            test4(number, event) {
+                alert(number + ' ---- ' + event.target.innerHTML);
+            },
+            test5() {
+                alert('out');
+            },
+            test6() {
+                alert('inner');
+                //原生阻止事件冒泡，而且原生有兼容性问题
+                //在Vue中，Vue给我们提供了事件修饰符，直接在@click后面加上.stop即可
+                //即：@click.stop
+                //event.stopPropagation()
+            },
+            test7() {
+                //原生阻止事件的默认行为
+                //在Vue中，Vue使用prevent事件修饰符即可
+                //即：@click.prevent
+                //event.preventDefault();
+                alert('点击了');
+            },
+            test8(event) {
+                //原生中，判断event的keyCode来判断13即为按下回车键
+                //在Vue中，在@keyup后面添加.keyCode即可
+                //即：@keyup.13
+                // if (event.keyCode === 13) {
+                //     alert(event.target.value);
+                // }
+                alert(event.target.value);
+            }
+        }
+    });
 </script>
 </body>
 </html>
