@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>02_模板语法</title>
+    <meta charset="UTF-8">
+    <title>02_模板语法</title>
 </head>
 <body>
 <!--
@@ -30,36 +30,42 @@
 -->
 
 <div id="app">
-  <h2>1. 双大括号表达式</h2>
-  <p>{{content}}</p>
-  <p>{{content.toUpperCase()}}</p>
+    <h2>1. 双大括号表达式</h2>
+    <p>{{ msg }}</p> <!-- textContext -->
+    <!-- 将数据转大写 -->
+    <p>{{ msg.toUpperCase() }}</p>
+    <p v-text="msg"></p> <!-- textContext -->
+    <p v-html="msg"></p> <!-- innerHTML -->
 
-  <h2>2. 指令一: 强制数据绑定</h2>
-  <a href="url">访问指定站点</a><br>
-  <a v-bind:href="url">访问指定站点2</a><br>
-  <a :href="url">访问指定站点2</a><br>
+    <h2>2. 指令一: 强制数据绑定</h2>
+    <!-- v-bind，数据绑定，简写为: -->
+    <img v-bind:src="imgUrl" alt="">
+    <img :src="imgUrl" alt="">
 
-  <h2>3. 指令二: 绑定事件监听</h2>
-  <button v-on:click="test">点我</button>
-  <button @click="test">点我</button>
-
+    <h2>3. 指令二: 绑定事件监听</h2>
+    <!-- 事件绑定v-on，简写为@ -->
+    <button v-on:click="test">test1</button>
+    <button @click="test2(msg)">test2</button>
 </div>
-
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
-    el: '#app',
-    data: {
-      content: 'NBA I Love This Game',
-      url: 'http://www.atguigu.com'
-    },
-    methods: {
-      test () {
-        alert('好啊!!!')
-      }
-    }
-  })
+    new Vue({
+        el: '#app',
+        data: {
+            //msg: 'I Will Back！'
+            msg: '<a href="http://www.atguigu.com">I Will Back！</a>',
+            imgUrl: 'https://cn.vuejs.org/images/logo.png'
+        },
+        methods: {
+            test() {
+                alert('点击了');
+            },
+            test2(content) {
+                alert(content);
+            }
+        }
+    });
 </script>
 </body>
 </html>
