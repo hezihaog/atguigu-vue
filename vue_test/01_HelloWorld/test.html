@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>01_HelloWorld</title>
+    <meta charset="UTF-8">
+    <title>01_HelloWorld</title>
 </head>
 <body>
 
@@ -16,22 +16,22 @@
   5. 理解vue的mvvm实现
 -->
 
-<!--模板-->
-<div id="test">
-  <input type="text" v-model="msg"><br><!--指令-->
-  <input type="text" v-model="msg"><!--指令-->
-  <p>hello {{msg}}</p><!--大括号表达式-->
+<!-- 模板 view-->
+<div id="app">
+    <!-- v-model，双向数据绑定指令 -->
+    <input type="text" v-model="username">
+    <!-- {{ 变量名 }} 插值表达式 -->
+    <p>Hello {{ username }}</p>
 </div>
-
-<script type="text/javascript" src="../js/vue.js"></script>
-<script type="text/javascript">
-  const vm = new Vue({ // 配置对象 options
-    // 配置选项(option)
-    el: '#test',  // element: 指定用vue来管理页面中的哪个标签区域
-    data: {
-      msg: 'atguigu'
-    }
-  })
+<script src="../js/vue.js"></script>
+<script>
+    //创建Vue实例（ViewModel）
+    const vm = new Vue({//配置对象
+        el: '#app',//element：选择器
+        data: {//数据（model）
+            username: 'atguigu'
+        }
+    });
 </script>
 </body>
 </html>
