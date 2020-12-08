@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>10_过渡&动画1</title>
-  <style>
-    /*指定过渡样式*/
-    .xxx-enter-active, .xxx-leave-active {
-      transition: opacity 1s
-    }
-    /*指定隐藏时的样式*/
-    .xxx-enter, .xxx-leave-to {
-      opacity: 0;
-    }
+    <meta charset="UTF-8">
+    <title>10_过渡&动画1</title>
+    <style>
+        /* ------------------ test1 ------------------ */
 
+        /* 进入和离开的动画效果以及时间 */
+        .xxx-enter-active, .xxx-leave-active {
+            transition: opacity 1s;
+        }
 
-    .move-enter-active {
-      transition: all 1s
-    }
+        /* 动画进入时和动画离开时的透明度为0 */
+        .xxx-enter, .xxx-leave-to {
+            opacity: 0;
+        }
 
-    .move-leave-active {
-      transition: all 3s
-    }
+        /* ------------------ test2 ------------------ */
 
-    .move-enter, .move-leave-to {
-      opacity: 0;
-      transform: translateX(20px)
-    }
-  </style>
+        /* 显示的过渡效果 */
+        .move-enter-active {
+            transition: all 1s;
+        }
+
+        /* 隐藏的过渡效果 */
+        .move-leave-active {
+            transition: all 3s;
+        }
+
+        /* 动画进入时和动画离开时的透明度为0 */
+        .move-enter, .move-leave-to {
+            opacity: 0;
+            transform: translateX(20px)
+        }
+    </style>
 </head>
 <body>
 <!--
@@ -44,40 +51,39 @@
   xxx-enter: 指定隐藏时的样式
 -->
 
-
-
-<div id="demo">
-  <button @click="show = !show">Toggle</button>
-  <transition name="xxx">
-    <p v-show="show">hello</p>
-  </transition>
+<div id="test1">
+    <button @click="isShow=!isShow">toggle</button>
+    <transition name="xxx">
+        <p v-show="isShow">hello</p>
+    </transition>
 </div>
 
-<hr>
-<div id="demo2">
-  <button @click="show = !show">Toggle2</button>
-  <transition name="move">
-    <p v-show="show">hello</p>
-  </transition>
+<div id="test2">
+    <button @click="isShow=!isShow">toggle</button>
+    <transition name="move">
+        <p v-show="isShow">hello</p>
+    </transition>
 </div>
-
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
-  new Vue({
-    el: '#demo',
-    data: {
-      show: true
-    }
-  })
+    new Vue({
+        el: '#test1',
+        data() {
+            return {
+                isShow: true
+            }
+        }
+    });
 
-  new Vue({
-    el: '#demo2',
-    data: {
-      show: true
-    }
-  })
-
+    new Vue({
+        el: '#test2',
+        data() {
+            return {
+                isShow: true
+            }
+        }
+    });
 </script>
 </body>
 </html>
