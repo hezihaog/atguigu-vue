@@ -1,20 +1,37 @@
 <template>
   <div>
-    <mt-button type="primary" @click.native="handleClick" style="width: 100%">Test</mt-button>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>Router Test</h2></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <!-- 生成路由链接 -->
+          <!-- to属性代表路由的地址 -->
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <!-- keep-alive标签，缓存路由组件对象，不每次切换都重新创建 -->
+            <keep-alive>
+              <!-- 显示当前组件 -->
+              <router-view></router-view>
+            </keep-alive>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  //引入Toast提示
-  import {Toast} from 'mint-ui';
-
-  export default {
-    methods: {
-      handleClick() {
-        Toast('提示信息');
-      }
-    }
-  }
+  export default {}
 </script>
 
 <style scoped>

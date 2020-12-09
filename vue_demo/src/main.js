@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import App from './App'
-//导入mint-ui
-import {Button} from 'mint-ui'
-
-//注册成标签（全局）
-//Vue.component('mt-button', Button);//自己起名字
-Vue.component(Button.name, Button);//也可以使用内部默认的名字
+//引入路由器
+import router from './router'
 
 new Vue({
   el: '#app',
   components: {
     App
   },
-  template: '<App/>'
+  template: '<App/>',
+  //配置路由器对象
+  router
 });
