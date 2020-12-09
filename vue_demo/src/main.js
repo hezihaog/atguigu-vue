@@ -1,9 +1,11 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
 import App from './App'
+//导入mint-ui
+import {Button} from 'mint-ui'
 
-//声明使用插件
-Vue.use(VueResource);//内部会给vm对象和组件对象添加一个属性：$http
+//注册成标签（全局）
+//Vue.component('mt-button', Button);//自己起名字
+Vue.component(Button.name, Button);//也可以使用内部默认的名字
 
 new Vue({
   el: '#app',
