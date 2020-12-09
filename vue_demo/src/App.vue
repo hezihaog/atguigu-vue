@@ -28,12 +28,12 @@
   import TodoHeader from "./components/TodoHeader";
   import TodoList from "./components/TodoList";
   import TodoFooter from "./components/TodoFooter";
+  import storageUtil from "./util/storageUtil";
 
   export default {
     data() {
       return {
-        //读取localStorage本地数据，如果没有返回一个空数组
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+        todos: storageUtil.readTodos()
       }
     },
     computed: {
@@ -98,10 +98,12 @@
     watch: {
       todos: {
         deep: true,//deep = true，代表深度监视，除了数组本身变化外，数组中的元素发生变化也会回调
-        handler: function (value) {//回调函数，当有变化时回调，数组的元素和本身发生变化时，保存到本地即可
-          //将todos最新的json数据，保存到localStorage中
-          window.localStorage.setItem('todos_key', JSON.stringify(value));
-        }
+        //回调函数，当有变化时回调，数组的元素和本身发生变化时，保存到本地即可
+        // handler: function (value) {
+        //   storageUtil.saveTodos(value);
+        // }
+        //简化写法，value值会直接传递到saveTodos函数中
+        handler: storageUtil.saveTodos
       }
     },
     //配置组件
