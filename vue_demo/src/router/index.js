@@ -11,6 +11,7 @@ import About from "../views/About";
 import Home from "../views/Home";
 import News from "../views/News";
 import Message from "../views/Message";
+import MessageDetail from '../views/MessageDetail'
 
 //使用路由
 Vue.use(VueRouter);
@@ -34,7 +35,14 @@ export default new VueRouter({
         },
         {
           path: 'message',//解决方案二：省略不写/，它在哪个路由下面，就会自动拼上面的路由的path在前面
-          component: Message
+          component: Message,
+          children: [
+            {
+              //path: 'home/message/detail/:id',//:id，占位，每个消息详情的携带的id都不一样
+              path: 'detail/:id',//简写
+              component: MessageDetail
+            }
+          ]
         },
         //默认选中News
         {

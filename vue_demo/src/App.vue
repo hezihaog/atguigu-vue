@@ -20,8 +20,8 @@
           <div class="panel-body">
             <!-- keep-alive标签，缓存路由组件对象，不每次切换都重新创建 -->
             <keep-alive>
-              <!-- 显示当前组件 -->
-              <router-view></router-view>
+              <!-- 显示当前组件，msg属性，向组件传递参数，不能加:，如果是:msg="abc"，则abc变为了变量，这里是传固定的字符串值 -->
+              <router-view msg="abc"></router-view>
             </keep-alive>
           </div>
         </div>
