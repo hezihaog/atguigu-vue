@@ -1,6 +1,6 @@
 <template>
   <ul class="todo-main">
-    <todo-item v-for="(todo, index) in todos" :key="index" :todo="todo" :index="index" :deleteTodo="deleteTodo"/>
+    <todo-item v-for="(todo, index) in todos" :key="index" :todo="todo" :index="index"/>
   </ul>
 </template>
 
@@ -10,9 +10,7 @@
   export default {
     props: {
       //声明需要Todos数组，类型为数组
-      todos: Array,
-      //删除Todo的方法
-      deleteTodo: Function
+      todos: Array
     },
     components: {
       TodoItem

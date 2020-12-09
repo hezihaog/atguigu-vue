@@ -19,12 +19,13 @@
 </template>
 
 <script>
+  import PubSub from 'pubsub-js'
+
   export default {
     //声明接收的属性
     props: {
       todo: Object,
       index: Number,
-      deleteTodo: Function
     },
     data() {
       return {
@@ -55,7 +56,9 @@
       deleteItem() {
         const {todo, index, deleteTodo} = this;
         if (window.confirm(`确认删除${todo.title}吗？`)) {
-          deleteTodo(index);
+          //deleteTodo(index);
+          //发布消息，传消息名和要传递的数据
+          PubSub.publish('deleteTodo', index);
         }
       }
     }
