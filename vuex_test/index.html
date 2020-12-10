@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
-    <title>vuex_test</title>
-    <style>
-      .router-link-active {
-        color: red !important;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+  <title>vue_demo</title>
+
+  <!-- 评论案例或Github搜索案例，需要引入bootstrap基础样式，其他不需要则注释掉 -->
+  <!--  <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.css">-->
+  <style>
+    /* 选中的路由的文字颜色 */
+    .router-link-active {
+      color: red !important;
+    }
+  </style>
+
+  <!-- 针对移动端的事件延迟问题，引入fastclick来处理 -->
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    if (!window.Promise) {
+      document.writeln('<scriptsrc="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+  </script>
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
 </html>
