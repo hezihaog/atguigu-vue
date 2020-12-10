@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>click {{$store.state.count}} times, count is {{evenOfOdd}}</p>
+    <p>click {{count}} times, count is {{evenOfOdd}}</p>
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
     <button @click="incrementIfOdd">increment if odd</button>
@@ -10,28 +10,40 @@
 
 <script>
   export default {
+    data() {
+      return {
+        count: 0
+      }
+    },
     computed: {
       evenOfOdd() {
-        return this.$store.getters.evenOfOdd;
+        return this.count % 2 === 0 ? '偶数' : '奇数';
       }
     },
     methods: {
       //增加
       increment() {
-        //通知Vuex更新状态
-        this.$store.dispatch('increment');//触发store中的对应的action调用
+        const count = this.count;
+        this.count = count + 1;
       },
       //减少
       decrement() {
-        this.$store.dispatch('decrement');
+        const count = this.count;
+        this.count = count - 1;
       },
       //如果是奇数，才增加1
       incrementIfOdd() {
-        this.$store.dispatch('incrementIfOdd');
+        const count = this.count;
+        if (count % 2 === 1) {
+          this.count = count + 1;
+        }
       },
       //过1秒后，再增加
       incrementAsync() {
-        this.$store.dispatch('incrementAsync');
+        setTimeout(() => {
+          const count = this.count;
+          this.count = count + 1;
+        }, 1000)
       },
     }
   }
