@@ -13,3 +13,7 @@ export const SELECT_ALL_TODOS = "select_all_todos";
  * 清除所有已完成的Todo
  */
 export const CLEAR_ALL_COMPLETED = "clearAllCompleted";
+/**
+ * 保存所有Todo列表
+ */
+export const RECEIVE_TODOS = "receive_todos";

@@ -2,7 +2,7 @@
  * 包含多个由action触发，直接更新状态的对象
  */
 
-import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETED} from './mutation-types';
+import {ADD_TODO, DELETE_TODO, SELECT_ALL_TODOS, CLEAR_ALL_COMPLETED, RECEIVE_TODOS} from './mutation-types';
 
 export default {
   /**
@@ -36,5 +36,11 @@ export default {
     state.todos = state.todos.filter((todo) => {
       return !todo.complete;
     });
+  },
+  /**
+   * 保存所有Todo列表
+   */
+  [RECEIVE_TODOS](state, todos) {
+    state.todos = todos;
   }
 }
